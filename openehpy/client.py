@@ -10,9 +10,9 @@ class server_connection:
         self.headers = headers
 
     def query(self, query):
-        response = requests.post(
-          self.EHRStoreURL + '/openehr/v1/query/aql/',
-          json = { 'q': server_connection.remove_control_characters(query) },
+        response = requests.get(
+          self.EHRStoreURL + '/rest/openehr/v1/query/aql',
+          params={'q': server_connection.remove_control_characters(query)},
           verify = self.verifySSLConnection,
           headers = self.headers
           )
